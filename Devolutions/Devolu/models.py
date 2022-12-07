@@ -1,5 +1,18 @@
 from django.db import models
-from django.contrib.auth.models import User
+from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin
+from django.utils import timezone
+
+"""class Cliente(AbstractBaseUser, PermissionsMixin):
+    email = models.EmailField(unique=True, verbose_name='Email')
+    is_staff = models.BooleanField(default=False)
+    is_active = models.BooleanField(default=True)
+    date_joined = models.DateTimeField(timezone.now)
+    USERNAME_FIELD = 'email'
+    REQUIRED_FIELDS = []
+
+
+    def __str__(self):
+        return self.email"""
 
 # Create your models here.
 class DCliente(models.Model):

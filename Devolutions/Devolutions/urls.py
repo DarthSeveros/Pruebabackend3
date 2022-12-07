@@ -15,10 +15,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from Devolu.views import listadev, registrard,registrardevo, eliminardev, devoluActualizar, editarDev
+from Devolu.views import registrarse, listadev, registrard,registrardevo, eliminardev, devoluActualizar, editarDev
 
 urlpatterns = [
     path('inicio/', include('django.contrib.auth.urls')),
+    #path('registrarse/', ),
     path('admin/', admin.site.urls),
     path('lista/',listadev),
     path('registrodev', registrard),
