@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from Devolu.forms import FormRegistro
+#from Devolu.forms import FormRegistro
 from Devolu.models import DCliente
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
@@ -12,7 +12,10 @@ def registrarse(request):
     user = User.objects.create_user(cli_username, cli_email, cli_password)
     user.save()
 
-    return redirect('/inicio/login')
+    return redirect('/inicio/login/')
+
+def registrar(request):
+    return render(request,'registrarse.html')
 
 @login_required
 def listadev(request):
