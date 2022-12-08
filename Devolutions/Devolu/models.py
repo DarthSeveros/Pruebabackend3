@@ -1,5 +1,5 @@
 from django.db import models
-from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin
+from django.contrib.auth.models import AbstractUser, PermissionsMixin
 from django.utils import timezone
 
 """class Cliente(AbstractBaseUser, PermissionsMixin):
@@ -19,7 +19,6 @@ class DCliente(models.Model):
     rut = models.CharField(max_length=10)
     nombre = models.CharField(max_length=100)
     apellido = models.CharField(max_length=100)
-    email = models.CharField(max_length=100)
     celular = models.PositiveIntegerField()
     
     

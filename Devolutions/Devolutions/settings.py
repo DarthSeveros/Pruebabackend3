@@ -26,6 +26,8 @@ SECRET_KEY = 'django-insecure-ww&4+s@9%ctv(@jd)yg8$25veug0&rmdr%v!df%jlx@fiq1nal
 DEBUG = True
 
 ALLOWED_HOSTS = []
+
+LOGIN_URL = '/inicio/login/'
 LOGIN_REDIRECT_URL = '/lista/'
 
 
