@@ -30,6 +30,8 @@ ALLOWED_HOSTS = []
 LOGIN_URL = '/inicio/login/'
 LOGIN_REDIRECT_URL = '/lista/'
 
+AUTH_USER_MODEL = 'Devolu.AdminUser'
+
 
 # Application definition
 

@@ -1,6 +1,5 @@
 from django.shortcuts import render, redirect
-#from Devolu.forms import FormRegistro
-from Devolu.models import DCliente
+from Devolu.models import DCliente, AdminUser
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User, Group, Permission
 from django.contrib.contenttypes.models import ContentType
@@ -10,13 +9,13 @@ def registrarse(request):
     cli_username = request.POST['txt_username']
     cli_email = request.POST['txt_email']
     cli_password = request.POST['txt_contrasena']
-    """cli_nombre =request.POST['txt_nombres']
-    cli_apellido = request.POST['txt_pellidos']
+    cli_nombre =request.POST['txt_nombres']
+    cli_apellido = request.POST['txt_apellidos']
     cli_rut = request.POST['txt_rut']
-    cli_celular = request.POST['txt_celular']"""
+    cli_celular = request.POST['txt_celular']
 
-    user = User.objects.create_user(cli_username, cli_email, cli_password)
-    #user = DCliente(rut = cli_rut, nombre = cli_nombre, apellido = cli_apellido, email = cli_email, celular = cli_celular)
+    user = AdminUser(username=cli_username, rut = cli_rut, nombre = cli_nombre, apellido = cli_apellido, email = cli_email, celular = cli_celular)
+    user.set_password(cli_password)
     user.save()
     grupo, created = Group.objects.get_or_create(name ='admin')
     user.groups.add(grupo)
