@@ -1,9 +1,11 @@
 from django.shortcuts import render, redirect
-from Devolu.models import DCliente, AdminUser
+from Devolu.models import AdminUser
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User, Group, Permission
 from django.contrib.contenttypes.models import ContentType
 
+def menu(request):
+    return render(request, 'menu.html')
 
 def registrarse(request):
     cli_username = request.POST['txt_username']
@@ -24,12 +26,12 @@ def registrarse(request):
 
 def registrar(request):
     if request.user.is_authenticated:
-        redirect('/lista/')
+        redirect('/menu/')
     return render(request,'registrarse.html')
 
 @login_required
 def listadev(request):
-    dcliente = DCliente.objects.all()
+    dcliente = AdminUser.objects.all()
     data = {'dcliente':dcliente}
     return render(request,'listarDevolucion.html', data)
 
@@ -51,7 +53,7 @@ def registrardevo(request):
     dev_distribuidor = request.POST['txt_distribuidor']
     dev_comentario = request.POST['txt_comentario']
 
-    devolucion = DCliente(rut = dev_rut, nombre = dev_nombre, apellido = dev_apellido, email = dev_email, celular = dev_celular, cantidad = dev_cantidad, producto = dev_producto, codigo = dev_codigo, nombrevendedor = dev_nombreV, distribuidor = dev_distribuidor, comentario = dev_comentario)
+    devolucion = AdminUser(rut = dev_rut, nombre = dev_nombre, apellido = dev_apellido, email = dev_email, celular = dev_celular, cantidad = dev_cantidad, producto = dev_producto, codigo = dev_codigo, nombrevendedor = dev_nombreV, distribuidor = dev_distribuidor, comentario = dev_comentario)
 
     devolucion.save()
 
@@ -60,14 +62,14 @@ def registrardevo(request):
 
 @login_required
 def eliminardev(request, id):
-    elemidev = DCliente.objects.get(id=id)
+    elemidev = AdminUser.objects.get(id=id)
     elemidev.delete()
 
     return redirect('/')
 
 login_required
 def devoluActualizar(request,id):
-    dev = DCliente.objects.get(id=id)
+    dev = AdminUser.objects.get(id=id)
     return render(request,'Actualizardev.html',{"dev":dev})    
 
 @login_required
@@ -84,7 +86,7 @@ def editarDev(request):
     dev_distribuidor = request.POST['txt_distribuidor']
     dev_comentario = request.POST['txt_comentario']
 
-    devolu = DCliente.objects.get(rut = dev_rut)
+    devolu = AdminUser.objects.get(rut = dev_rut)
 
     devolu.nombre = dev_nombre
     devolu.apellido = dev_apellido

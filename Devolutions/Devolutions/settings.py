@@ -28,7 +28,7 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 LOGIN_URL = '/inicio/login/'
-LOGIN_REDIRECT_URL = '/lista/'
+LOGIN_REDIRECT_URL = '/menu/'
 
 AUTH_USER_MODEL = 'Devolu.AdminUser'
 
